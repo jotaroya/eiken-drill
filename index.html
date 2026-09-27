@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>準1級 即答ドリル</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Literata:opsz,wght@7..72,400;7..72,600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+:root{
+  --bg:#EEF2F1; --surface:#FFFFFF; --ink:#16211F; --ink-2:#3E4B48; --muted:#6B7875;
+  --line:#D5DDDB; --accent:#0E7C6B; --accent-ink:#FFFFFF; --accent-soft:#D6EEE9;
+  --amber:#B8670A; --amber-soft:#FBEBD3; --good:#1F7A3A; --good-soft:#DDF1E3;
+  --bad:#B42318; --bad-soft:#FBE3E0; --mid:#8A6D00; --mid-soft:#F6EDC8;
+  --ja:"BIZ UDPGothic","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  --en:"Literata",Georgia,"Times New Roman",serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){color-scheme:dark;
+    --bg:#101716; --surface:#18221F; --ink:#E7EFED; --ink-2:#BCC9C6; --muted:#8C9A97;
+    --line:#2C3A37; --accent:#3CC2A8; --accent-ink:#06201B; --accent-soft:#163A33;
+    --amber:#F0A94A; --amber-soft:#3A2A12; --good:#6BD08A; --good-soft:#15301E;
+    --bad:#F28B80; --bad-soft:#3A1A17; --mid:#E3C65A; --mid-soft:#332B10;}
+}
+:root[data-theme="dark"]{color-scheme:dark;
+  --bg:#101716; --surface:#18221F; --ink:#E7EFED; --ink-2:#BCC9C6; --muted:#8C9A97;
+  --line:#2C3A37; --accent:#3CC2A8; --accent-ink:#06201B; --accent-soft:#163A33;
+  --amber:#F0A94A; --amber-soft:#3A2A12; --good:#6BD08A; --good-soft:#15301E;
+  --bad:#F28B80; --bad-soft:#3A1A17; --mid:#E3C65A; --mid-soft:#332B10;}
+*{box-sizing:border-box}
+html,body{background:var(--bg);margin:0}
+body{color:var(--ink);font-family:var(--ja);font-size:15px;line-height:1.6;padding-inline:16px;padding-block:18px 40px}
+[hidden]{display:none!important}
+.wrap{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+h1{font-size:19px;margin:0;letter-spacing:.02em}
+.meta{font-size:12px;color:var(--muted)}
+button{font:inherit;cursor:pointer;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:10px 14px;min-height:44px}
+button:focus-visible,textarea:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:700}
+button:disabled{opacity:.55;cursor:default}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.tagrow{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.tag{font-size:11.5px;letter-spacing:.06em;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:3px 10px}
+.tag.review{color:var(--amber);background:var(--amber-soft)}
+.count{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.ja{font-size:21px;line-height:1.65;font-weight:700;text-wrap:pretty}
+.label{font-size:13px;color:var(--ink-2)}
+.timer{font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
+.note{font-size:12.5px;color:var(--muted);margin:0}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.grow{flex:1 1 auto}
+.mic{display:flex;align-items:center;justify-content:center;gap:10px;min-height:64px;border-radius:14px;border:2px solid var(--bad);color:var(--bad);background:var(--surface);font-weight:700;font-size:17px;width:100%}
+.mic .dot{width:14px;height:14px;border-radius:50%;background:var(--bad)}
+.mic.on{background:var(--bad);color:#fff}
+.mic.on .dot{background:#fff;border-radius:3px}
+@media (prefers-reduced-motion:no-preference){.mic.on .dot{animation:pulse 1s ease-in-out infinite}@keyframes pulse{50%{opacity:.35}}}
+textarea,input.txt{width:100%;font-family:var(--en);font-size:17px;line-height:1.5;border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--bg);color:var(--ink)}
+textarea{min-height:84px;resize:vertical}
+input.txt{font-family:var(--mono);font-size:14px;min-height:44px}
+.step{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.04em}
+.fb{display:flex;flex-direction:column;gap:12px;font-size:14px}
+.good{background:var(--good-soft);color:var(--ink);border-radius:10px;padding:10px 12px}
+.good b{color:var(--good)}
+.fb ol{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:8px}
+.w{font-family:var(--en);text-decoration:line-through;color:var(--bad)}
+.r{font-family:var(--en);color:var(--good);font-weight:600}
+.corr{font-family:var(--en);font-size:17px;border-left:3px solid var(--accent);padding-left:10px}
+.model{font-family:var(--en);font-size:18px;line-height:1.55}
+.alt{font-family:var(--en);font-size:14.5px;color:var(--ink-2)}
+.point{font-size:13.5px;color:var(--ink-2);border-top:1px dashed var(--line);padding-top:10px}
+.point b{color:var(--ink)}
+.mine{font-family:var(--en);font-size:16px;color:var(--ink-2)}
+.judge{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.judge button{font-weight:700;font-size:18px}
+.j-good{background:var(--good-soft);border-color:transparent;color:var(--good)}
+.j-mid{background:var(--mid-soft);border-color:transparent;color:var(--mid)}
+.j-bad{background:var(--bad-soft);border-color:transparent;color:var(--bad)}
+.player{display:flex;flex-direction:column;gap:8px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px}
+.player canvas{width:100%;height:56px;display:block;touch-action:none;cursor:pointer}
+.ptime{font-family:var(--mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.player .row button{min-height:40px;padding:8px 12px}
+.linkish{background:none;border:none;color:var(--accent);padding:6px 0;min-height:auto;text-decoration:underline;text-underline-offset:3px}
+.sum{display:flex;flex-direction:column;gap:10px}
+.sum .it{border-top:1px solid var(--line);padding-top:10px;display:flex;flex-direction:column;gap:4px}
+.hist{display:flex;flex-direction:column;gap:6px;font-size:13px}
+.hist .h{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid var(--line);padding-block:6px}
+.warn{background:var(--amber-soft);color:var(--ink);border-radius:10px;padding:10px 12px;font-size:13px}
+.ok{color:var(--good);font-weight:700}
+label.f{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>準1級 即答ドリル</h1>
+    <button class="linkish" id="open-set" type="button">設定</button>
+  </header>
+
+  <section class="card" id="setcard" hidden>
+    <span class="step">設定（このスマホのブラウザの中だけに保存されます）</span>
+    <label class="f">Gemini APIキー
+      <input class="txt" id="set-key" type="password" autocomplete="off" spellcheck="false" placeholder="AIza…">
+    </label>
+    <label class="f">記録の送り先（スプレッドシートのURL）
+      <input class="txt" id="set-sheet" type="url" autocomplete="off" spellcheck="false" placeholder="https://script.google.com/macros/s/…/exec">
+    </label>
+    <div class="row"><button class="primary grow" id="set-save">保存して確かめる</button><button id="set-close">閉じる</button></div>
+    <p class="note" id="set-status"></p>
+  </section>
+
+  <section class="card" id="home">
+    <div class="tagrow"><span class="tag" id="h-mode">…</span><span class="count" id="h-date"></span></div>
+    <div class="ja">今日の3文</div>
+    <p class="note" id="h-desc">読み込んでいます…</p>
+    <button class="primary" id="start" disabled>今日の3文をはじめる</button>
+    <p class="note" id="status"></p>
+  </section>
+
+  <section class="card" id="q" hidden aria-live="polite">
+    <div class="tagrow"><span class="tag" id="q-tag">ナレーション</span><span class="count" id="q-count">1 / 3</span></div>
+    <div class="ja" id="q-ja"></div>
+    <div class="row"><span class="label grow" id="q-label"></span><span class="timer" id="timer">0.0秒</span></div>
+    <button class="mic" id="mic" type="button"><span class="dot"></span><span id="mic-t">タップして英語で答える</span></button>
+    <div class="player" id="player" hidden>
+      <canvas id="wave" aria-label="自分の声の波形。タップでその位置から再生、なぞると範囲をくり返し再生"></canvas>
+      <div class="row">
+        <button id="play" class="primary">▶ 自分の声</button>
+        <button id="back2">−2秒</button>
+        <button id="rate">速さ 1</button>
+        <button id="clearloop" hidden>範囲を解除</button>
+        <span class="ptime grow" id="ptime">0.0 / 0.0</span>
+      </div>
+    </div>
+    <div id="saidbox" hidden style="display:flex;flex-direction:column;gap:6px">
+      <span class="step" id="said-h">聞き取った英文</span>
+      <textarea id="said" autocomplete="off" autocapitalize="sentences" spellcheck="false"></textarea>
+      <span class="note" id="said-note">言い間違いもそのまま書き起こしています。聞き取りが違うところだけ直してください。</span>
+    </div>
+    <div class="row">
+      <button class="primary grow" id="check" hidden>添削する</button>
+      <button class="linkish" id="typeit" type="button">声を出せない場所なので文字で答える</button>
+    </div>
+  </section>
+
+  <section class="card" id="fbcard" hidden>
+    <div class="tagrow"><span class="tag" id="f-tag">添削</span><span class="count" id="f-count"></span></div>
+    <div class="mine" id="f-mine"></div>
+    <div class="fb" id="fb"></div>
+    <div id="modelbox" hidden style="display:flex;flex-direction:column;gap:6px">
+      <span class="step">模範文</span>
+      <div class="model" id="f-model"></div>
+      <div class="alt" id="f-alt"></div>
+      <div class="point" id="f-point"></div>
+      <div class="row"><button class="linkish" id="speak" type="button">模範文を読み上げる</button><button class="linkish" id="replay" type="button" hidden>自分の声をもう一度</button></div>
+    </div>
+    <div id="judgebox" hidden style="display:flex;flex-direction:column;gap:6px">
+      <span class="step">自己判定</span>
+      <div class="judge">
+        <button class="j-good" data-j="good">◎</button>
+        <button class="j-mid" data-j="mid">○</button>
+        <button class="j-bad" data-j="bad">×</button>
+      </div>
+      <span class="note">× の文は次回の復習に回ります</span>
+    </div>
+  </section>
+
+  <section class="card" id="done" hidden>
+    <div class="ja">今日の3文おわり</div>
+    <div class="sum" id="sum"></div>
+    <p class="note" id="savenote"></p>
+    <div class="row">
+      <button class="primary grow" id="more">もう3文やる</button>
+      <button id="home-btn">最初の画面へ</button>
+    </div>
+  </section>
+
+  <section class="card" id="histcard">
+    <span class="step">最近の記録</span>
+    <div class="hist" id="hist"><span class="note">まだありません</span></div>
+    <span class="note">記録は毎晩、右腕AIの学習ログと日英ドリル台帳に書き写されます。</span>
+  </section>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  const $=id=>document.getElementById(id);
+  const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const safeB=s=>esc(s).replace(/&lt;b&gt;/g,"<b>").replace(/&lt;\/b&gt;/g,"</b>");
+  const fmt=s=>(Math.round(s*10)/10).toFixed(1);
+  const LS={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
+  const TOPICS=["働き方（在宅勤務・長時間労働）","教育（オンライン授業・部活動・塾）","少子高齢化","地方の人口減少","環境（プラスチック・再エネ）","テクノロジーとAI","医療・健康","観光と地域経済","食の安全・食品ロス","防災","メディアとSNS","ボランティア・地域活動"];
+  const MODE={narration:"ナレーション",qa:"Q&A"};
+  const DEFAULT_STATE={nextMode:"qa",card:{title:"Working from Home",koma:[
+    {n:1,time:"One day,",scene:"夜9時のオフィス。疲れた社員3人。上司の佐藤さんがそれを見て考えている",bubble:"I have a two-hour commute every day."},
+    {n:2,time:"The next month,",scene:"掲示「New Policy: Work from Home」。女性が自宅で子どもの隣で作業",bubble:"I can have dinner with my family now!"},
+    {n:3,time:"Six months later,",scene:"薄暗い部屋で新入社員が一人。9人のオンライン会議。未開封のマニュアル",bubble:"I don't know who to ask for help."},
+    {n:4,time:"Later that day,",scene:"佐藤さんがアンケートの円グラフを提示。意見は半々。佐藤さんは困った顔",bubble:"I want to keep working from home. / I miss talking to people."}]},
+    nextKoma:4,qaTopics:[],review:[{ja:"翌月、会社は在宅勤務の新しい方針を導入した",point:"<b>introduce</b>：制度・方針を「導入する」は introduce。begin は不自然",en:"The next month, the company introduced a new work-from-home policy."}]};
+  const today=()=>new Date(Date.now()+9*3600e3).toISOString().slice(0,10);
+  const uid=()=>today().replace(/-/g,"")+"-"+Math.random().toString(36).slice(2,8);
+
+  // 記録の送り先はURLの # で受け取れる（#s=… はサーバーに送られない）
+  (function(){const m=location.hash.match(/[#&]s=([^&]+)/);if(m){LS.set("ek_sheet",decodeURIComponent(m[1]));history.replaceState(null,"",location.pathname)}})();
+  const cfg={get key(){return LS.get("ek_key")||""},get sheet(){return LS.get("ek_sheet")||""}};
+
+  // ---------- Gemini ----------
+  const API="https://generativelanguage.googleapis.com/v1beta/";
+  async function gfetch(path,body){
+    const r=await fetch(API+path,{method:body?"POST":"GET",headers:{"x-goog-api-key":cfg.key,...(body?{"Content-Type":"application/json"}:{})},body:body?JSON.stringify(body):undefined});
+    const j=await r.json().catch(()=>({}));
+    if(!r.ok){const e=new Error(j?.error?.message||("HTTP "+r.status));e.status=r.status;throw e}
+    return j;
+  }
+  async function pickModel(force){
+    const c=LS.get("ek_model");if(c&&!force)return c;
+    let best=null,bv=-1;
+    try{
+      const j=await gfetch("models?pageSize=1000");
+      for(const m of (j.models||[])){
+        const mm=/^models\/gemini-(\d+(?:\.\d+)?)-flash$/.exec(m.name||"");
+        if(mm&&(m.supportedGenerationMethods||[]).includes("generateContent")){const v=parseFloat(mm[1]);if(v>bv){bv=v;best=m.name.slice(7)}}
+      }
+    }catch(e){if(e.status===400||e.status===403)throw e}
+    best=best||"gemini-flash-latest";LS.set("ek_model",best);return best;
+  }
+  async function gen(parts,{json=true,temp=0.7}={}){
+    const model=await pickModel();
+    const body={contents:[{role:"user",parts}],generationConfig:{temperature:temp,...(json?{responseMimeType:"application/json"}:{})}};
+    let j;
+    try{j=await gfetch("models/"+model+":generateContent",body)}
+    catch(e){if(e.status===404){LS.del("ek_model");const m2=await pickModel(true);j=await gfetch("models/"+m2+":generateContent",body)}else throw e}
+    const t=(j.candidates?.[0]?.content?.parts||[]).map(p=>p.text||"").join("").trim();
+    if(!json)return t;
+    return JSON.parse(t.replace(/^```(?:json)?\s*|\s*```$/g,""));
+  }
+  function errMsg(e){
+    if(!cfg.key)return "設定でGemini APIキーを入れてください。";
+    if(e&&e.status===429)return "Geminiの無料枠の上限に当たりました。1分ほど待ってからもう一度。";
+    if(e&&(e.status===400||e.status===403)&&/key/i.test(e.message||""))return "APIキーが使えません。設定で貼り直してください。";
+    if(e instanceof SyntaxError)return "AIの返事が読めませんでした。もう一度押してください。";
+    return "うまくいきませんでした（"+esc(e&&e.message||"エラー")+"）。もう一度押してください。";
+  }
+
+  // ---------- 記録（スプレッドシート） ----------
+  const store={
+    async load(){
+      if(!cfg.sheet){let s=null;try{s=JSON.parse(LS.get("ek_state")||"null")}catch(e){}let h=[];try{h=JSON.parse(LS.get("ek_hist")||"[]")}catch(e){}return {state:s,recent:h}}
+      const r=await fetch(cfg.sheet+"?action=load",{redirect:"follow"});const j=await r.json();
+      return {state:j.state||null,recent:(j.recent||[]).map(x=>{try{return JSON.parse(x.json)}catch(e){return null}}).filter(Boolean)};
+    },
+    async save(state,session){
+      LS.set("ek_state",JSON.stringify(state));
+      if(!cfg.sheet){let h=[];try{h=JSON.parse(LS.get("ek_hist")||"[]")}catch(e){}if(session){h.unshift(session);LS.set("ek_hist",JSON.stringify(h.slice(0,8)))}return false}
+      const r=await fetch(cfg.sheet,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"save",state,session}),redirect:"follow"});
+      const j=await r.json();if(!j.ok)throw new Error(j.error||"save failed");return true;
+    }
+  };
+
+  let state=null,items=[],idx=0,t0=0,raf=0,elapsed=0,sessionMode="",sessionMeta={},recent=[];
+
+  function renderHome(){
+    $("h-date").textContent=today();
+    const m=state.nextMode;$("h-mode").textContent=MODE[m];
+    if(m==="narration"){
+      const k=state.card.koma.find(x=>x.n===state.nextKoma);
+      $("h-desc").textContent=k?`カード「${state.card.title}」のコマ${k.n}から新しく2文＋前に間違えた型の復習1文。`:`カード「${state.card.title}」は最後まで終わりました。新しいカードを作ってコマ1から始めます。`;
+    }else{
+      $("h-desc").textContent="社会問題のトピックを1つ。意見 → 理由1と具体例 → 理由2 の3文。"+(state.review&&state.review.length?"前に間違えた表現を1か所に混ぜます。":"");
+    }
+    $("start").disabled=!cfg.key;
+    $("status").innerHTML=!cfg.key?'<span class="warn" style="display:block">最初に右上の「設定」で Gemini APIキーを入れてください。</span>':!cfg.sheet?'<span class="warn" style="display:block">記録の送り先が未設定です。練習はできますが、記録は右腕AIに届きません。</span>':"";
+  }
+  function renderHist(){
+    if(!recent.length){$("hist").innerHTML='<span class="note">まだありません</span>';return}
+    $("hist").innerHTML=recent.slice(0,8).map(x=>{const bad=(x.items||[]).filter(i=>i.judge==="bad").length;const errs=(x.items||[]).reduce((a,i)=>a+(i.errors?.length||0),0);
+      return '<div class="h"><span>'+esc(x.date)+'　'+esc(MODE[x.mode]||x.mode)+(x.topic?'（'+esc(x.topic)+'）':x.card?'（'+esc(x.card)+' コマ'+esc(x.koma)+'）':'')+'</span><span>誤り'+errs+'　×'+bad+'</span></div>'}).join("");
+  }
+  async function boot(){
+    state=JSON.parse(JSON.stringify(DEFAULT_STATE));renderHome();
+    try{const d=await store.load();if(d.state)state=d.state;recent=d.recent||[]}
+    catch(e){$("status").innerHTML='<span class="warn" style="display:block">記録を読み込めませんでした。設定の「記録の送り先」を確かめてください。</span>'}
+    renderHome();renderHist();
+    if(!cfg.key)openSet();
+  }
+
+  // ---------- 設定 ----------
+  function openSet(){$("set-key").value=cfg.key;$("set-sheet").value=cfg.sheet;$("setcard").hidden=false;$("set-status").textContent=""}
+  $("open-set").onclick=()=>{$("setcard").hidden?openSet():($("setcard").hidden=true)};
+  $("set-close").onclick=()=>{$("setcard").hidden=true};
+  $("set-save").onclick=async()=>{
+    const k=$("set-key").value.trim(),s=$("set-sheet").value.trim();
+    if(k!==cfg.key)LS.del("ek_model");
+    k?LS.set("ek_key",k):LS.del("ek_key");s?LS.set("ek_sheet",s):LS.del("ek_sheet");
+    const out=[];$("set-status").textContent="確かめています…";
+    if(k){try{const m=await pickModel(true);out.push("Gemini：OK（"+m+"）")}catch(e){out.push("Gemini：× "+errMsg(e))}}else out.push("Gemini：キー未入力");
+    if(s){try{const d=await store.load();out.push("記録：OK"+(d.state?"（前回の続きから）":"（はじめて）"));if(d.state)state=d.state;recent=d.recent||[]}catch(e){out.push("記録：× つながりません")}}else out.push("記録：未設定（このスマホの中だけに残ります）");
+    $("set-status").textContent=out.join("　／　");renderHome();renderHist();
+  };
+
+  // ---------- お題づくり ----------
+  async function makeItems(){
+    const m=state.nextMode;const rv=(state.review||[]).slice(0,1);let prompt;
+    if(m==="narration"){
+      let card=state.card,k=card.koma.find(x=>x.n===state.nextKoma);
+      if(!k){
+        const nc=await gen([{text:`英検準1級の二次試験の4コマ漫画カードを1枚、文章で作ってください。社会的な話題で、これまでのカード「${card.title}」とは別の話題。各コマに時間表現（1コマ目は One day,）、絵の内容（日本語）、吹き出しのセリフ（英語）。出力はJSONだけ：{"title":"英語タイトル","koma":[{"n":1,"time":"One day,","scene":"…","bubble":"…"}] }（komaは4要素）`}]);
+        card=nc;state.card=nc;state.nextKoma=1;k=nc.koma[0];
+      }
+      sessionMeta={card:card.title,koma:k.n};
+      prompt=`英検準1級の二次試験ナレーションの瞬間英作文を作ります。
+カード「${card.title}」のコマ${k.n}：時間表現「${k.time}」／絵「${k.scene}」／吹き出し「${k.bubble}」
+1文目：${k.time} で始まる、場面の描写。was/were ~ing を使う過去形の文。
+2文目：吹き出しの内容を said that / told 人 that ＋ 過去形（時制の一致）で伝える文。but / so でつないでもよい。
+3文目（復習）：${rv.length?`次の和文をそのまま使う：「${rv[0].ja}」（狙い：${rv[0].point}）`:"過去形の物語で間違えやすい語法（時制・前置詞・動詞の選び方）を1つ狙った文を新しく作る"}
+和文は自然な日本語で、過去の物語として書く（絵の説明にしない）。英文は面接でそのまま言える B2 の口語。
+label は学習者に見せる「型のラベル」（例：1文目の型／said that の文／復習：introduce）。英文のヒントを含めない。
+point は模範文の型を日本語40字以内。型名を <b>…</b> で1か所だけ囲む。
+出力はJSON配列だけ（3要素）：[{"ja":"…","label":"…","en":"…","alt":["…"],"point":"…","review":false}]（3文目は review:true）`;
+    }else{
+      const used=state.qaTopics||[];const pool=TOPICS.filter(t=>!used.slice(-6).includes(t));const topic=pool[Math.floor(Math.random()*pool.length)]||TOPICS[0];
+      sessionMeta={topic};
+      prompt=`英検準1級の二次試験 Q&A（No.3・No.4型）の瞬間英作文を作ります。トピック：${topic}
+学習者は旭川で塾を経営する20代。本人が言いそうな立場で、次の3文を作る：
+1文目：Yes/No を含む意見を1文（I think … should … など）。
+2文目：理由1と具体例を1文（This is because … For example, … を1文にまとめてもよい）。
+3文目：理由2を1文（Also, … / In addition, …）。
+${rv.length?`3文のどれか1つに、次の表現を自然に使わせる和文にする：「${rv[0].en}」の要点（${rv[0].point}）。その文は review:true。`:""}
+和文は自然な日本語。英文は面接でそのまま言える B2 の口語、各20語前後。
+label は学習者に見せる「型のラベル」（例：意見の1文／理由＋例／理由2）。英文のヒントを含めない。
+point は模範文の型を日本語40字以内。型名を <b>…</b> で1か所だけ囲む。
+出力はJSON配列だけ（3要素）：[{"ja":"…","label":"…","en":"…","alt":["…"],"point":"…","review":false}]`;
+    }
+    const arr=await gen([{text:prompt}]);
+    if(!Array.isArray(arr)||arr.length<3)throw new SyntaxError("bad");
+    return arr.slice(0,3).map(x=>({ja:String(x.ja||""),label:String(x.label||""),en:String(x.en||""),alt:Array.isArray(x.alt)?x.alt.map(String).slice(0,2):[],point:String(x.point||""),review:!!x.review}));
+  }
+  async function start(){
+    $("start").disabled=true;$("more").disabled=true;$("status").textContent="お題を作っています（10〜30秒）…";
+    try{sessionMode=state.nextMode;items=await makeItems();idx=0;$("status").textContent="";$("home").hidden=true;$("done").hidden=true;showQ()}
+    catch(e){$("status").innerHTML='<span class="warn" style="display:block">'+errMsg(e)+'</span>';$("home").hidden=false;$("done").hidden=true}
+    finally{$("start").disabled=!cfg.key;$("more").disabled=false}
+  }
+
+  // ---------- 1文ごと ----------
+  function tick(){elapsed=(performance.now()-t0)/1000;$("timer").textContent=fmt(elapsed)+"秒";raf=requestAnimationFrame(tick)}
+  let spokeAt=null;
+  function showQ(){
+    const it=items[idx];
+    $("fbcard").hidden=true;$("q").hidden=false;
+    $("q-tag").textContent=(it.review?"復習・":"")+MODE[sessionMode];$("q-tag").className="tag"+(it.review?" review":"");
+    $("q-count").textContent=(idx+1)+" / 3";$("q-ja").textContent=it.ja;$("q-label").textContent=it.label;
+    $("said").value="";$("saidbox").hidden=true;$("check").hidden=true;$("check").disabled=false;$("typeit").hidden=false;
+    $("mic").hidden=false;$("mic").disabled=false;$("mic-t").textContent="タップして英語で答える";
+    resetAudio();spokeAt=null;cancelAnimationFrame(raf);t0=performance.now();tick();window.scrollTo({top:0});
+  }
+  $("typeit").onclick=()=>{$("saidbox").hidden=false;$("said-h").textContent="英文を入力";$("said-note").textContent="キーボードで入力（音声入力でもOK）。";$("check").hidden=false;$("typeit").hidden=true;$("said").focus()};
+
+  // 録音
+  let rec=null,chunks=[],stream=null,recT0=0,recRaf=0,blobWav=null,blobMime="";
+  function pickMime(){for(const m of ["audio/webm;codecs=opus","audio/webm","audio/mp4","audio/ogg;codecs=opus"]){try{if(window.MediaRecorder&&MediaRecorder.isTypeSupported(m))return m}catch(e){}}return ""}
+  $("mic").onclick=async()=>{
+    if(rec&&rec.state==="recording"){rec.stop();return}
+    try{stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true}})}
+    catch(e){$("mic-t").textContent="マイクが使えません（ブラウザの許可を確認）";return}
+    const mt=pickMime();chunks=[];rec=new MediaRecorder(stream,mt?{mimeType:mt}:undefined);
+    rec.ondataavailable=e=>{if(e.data&&e.data.size)chunks.push(e.data)};
+    rec.onstop=onRecStop;
+    if(spokeAt==null)spokeAt=elapsed;
+    resetAudio();rec.start();recT0=performance.now();$("mic").classList.add("on");
+    (function rt(){$("mic-t").textContent="話し終えたらタップ　"+fmt((performance.now()-recT0)/1000)+"秒";recRaf=requestAnimationFrame(rt)})();
+  };
+  async function onRecStop(){
+    cancelAnimationFrame(recRaf);$("mic").classList.remove("on");
+    try{stream.getTracks().forEach(t=>t.stop())}catch(e){}
+    const raw=new Blob(chunks,{type:(rec.mimeType||"audio/webm")});
+    $("mic-t").textContent="録り直す";
+    cancelAnimationFrame(raf);elapsed=(performance.now()-t0)/1000;$("timer").textContent=fmt(elapsed)+"秒";
+    await loadAudio(raw);
+    $("saidbox").hidden=false;$("said-h").textContent="聞き取った英文";$("said-note").textContent="書き起こしています…";$("said").value="";$("typeit").hidden=true;
+    try{
+      const r=await gen([{text:`This is a recording of a Japanese learner of English answering a speaking drill.
+Transcribe exactly what the speaker said, word for word, in English.
+- Do NOT correct grammar, tense, articles, plurals, prepositions or word choice. Keep every mistake exactly as spoken.
+- Leave out filler sounds (uh, um, er, あー, えーと). If the speaker restarted a phrase, keep only the final attempt.
+- If a word is unclear, write what was actually pronounced as best you can; never substitute a more "correct" word.
+Output JSON only: {"text":"...","unclear":["words you were unsure about"]}`},{inline_data:{mime_type:blobMime,data:await b64(blobWav)}}],{temp:0});
+      $("said").value=String(r.text||"").trim();
+      $("said-note").textContent="言い間違いもそのまま書き起こしています。聞き取りが違うところだけ直してください。"+((r.unclear||[]).length?"（自信がない語："+r.unclear.join(", ")+"）":"");
+    }catch(e){$("said-note").innerHTML=errMsg(e)+" 自分で打ち込んでもOK。"}
+    $("check").hidden=false;
+  }
+  function b64(blob){return new Promise((res,rej)=>{const fr=new FileReader();fr.onload=()=>res(String(fr.result).split(",")[1]);fr.onerror=rej;fr.readAsDataURL(blob)})}
+  function encodeWav(samples,rate){
+    const buf=new ArrayBuffer(44+samples.length*2),v=new DataView(buf);const ws=(o,s)=>{for(let i=0;i<s.length;i++)v.setUint8(o+i,s.charCodeAt(i))};
+    ws(0,"RIFF");v.setUint32(4,36+samples.length*2,true);ws(8,"WAVE");ws(12,"fmt ");v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,rate,true);v.setUint32(28,rate*2,true);v.setUint16(32,2,true);v.setUint16(34,16,true);ws(36,"data");v.setUint32(40,samples.length*2,true);
+    for(let i=0;i<samples.length;i++){const s=Math.max(-1,Math.min(1,samples[i]));v.setInt16(44+i*2,s<0?s*0x8000:s*0x7FFF,true)}
+    return new Blob([buf],{type:"audio/wav"});
+  }
+
+  // ---------- 自分の声の再生と波形 ----------
+  const audio=new Audio();let aurl=null,peaks=null,dur=0,loopA=null,loopB=null,prate=1,wraf=0;
+  function resetAudio(){try{audio.pause()}catch(e){}if(aurl){URL.revokeObjectURL(aurl);aurl=null}peaks=null;dur=0;loopA=loopB=null;blobWav=null;$("player").hidden=true;$("clearloop").hidden=true;$("play").textContent="▶ 自分の声"}
+  async function loadAudio(raw){
+    aurl=URL.createObjectURL(raw);audio.src=aurl;audio.playbackRate=prate;
+    blobWav=raw;blobMime=(raw.type||"audio/webm").split(";")[0];
+    try{
+      const Ctx=window.AudioContext||window.webkitAudioContext;const ctx=new Ctx();
+      const buf=await ctx.decodeAudioData(await raw.arrayBuffer());dur=buf.duration;
+      const ch=buf.getChannelData(0),N=200,step=Math.max(1,Math.floor(ch.length/N));peaks=[];
+      for(let i=0;i<N;i++){let m=0;for(let j=i*step;j<Math.min(ch.length,(i+1)*step);j+=4){const v=Math.abs(ch[j]);if(v>m)m=v}peaks.push(m)}
+      const mx=Math.max(...peaks,0.01);peaks=peaks.map(v=>v/mx);
+      const rate=16000,off=new OfflineAudioContext(1,Math.ceil(buf.duration*rate),rate);const src=off.createBufferSource();src.buffer=buf;src.connect(off.destination);src.start();
+      const rb=await off.startRendering();blobWav=encodeWav(rb.getChannelData(0),rate);blobMime="audio/wav";
+      ctx.close&&ctx.close();
+    }catch(e){peaks=null}
+    $("player").hidden=false;requestAnimationFrame(drawWave);
+  }
+  const cssv=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  function drawWave(){
+    const c=$("wave");if(!c.offsetParent)return;const r=c.getBoundingClientRect(),dpr=window.devicePixelRatio||1;
+    c.width=Math.max(1,r.width*dpr);c.height=56*dpr;const g=c.getContext("2d");g.scale(dpr,dpr);
+    const W=r.width,H=56;g.clearRect(0,0,W,H);const d=dur||audio.duration||0;
+    if(loopA!=null&&loopB!=null&&d){g.fillStyle=cssv("--amber-soft");g.fillRect(W*loopA/d,0,W*(loopB-loopA)/d,H)}
+    const pos=d&&isFinite(d)?audio.currentTime/d:0;
+    if(peaks){const n=peaks.length,bw=W/n;for(let i=0;i<n;i++){const h=Math.max(2,peaks[i]*(H-8));g.fillStyle=(i/n<=pos)?cssv("--accent"):cssv("--line");g.fillRect(i*bw+0.5,(H-h)/2,Math.max(1,bw-1),h)}}
+    else{g.fillStyle=cssv("--line");g.fillRect(0,H/2-1,W,2)}
+    g.fillStyle=cssv("--ink");g.fillRect(W*pos-1,0,2,H);
+    $("ptime").textContent=fmt(audio.currentTime||0)+" / "+fmt(isFinite(d)?d:0);
+  }
+  function loopTick(){if(loopA!=null&&loopB!=null&&audio.currentTime>=loopB){audio.currentTime=loopA}drawWave();if(!audio.paused)wraf=requestAnimationFrame(loopTick)}
+  audio.addEventListener("play",()=>{$("play").textContent="⏸ 停止";cancelAnimationFrame(wraf);wraf=requestAnimationFrame(loopTick)});
+  audio.addEventListener("pause",()=>{$("play").textContent="▶ 自分の声";drawWave()});
+  audio.addEventListener("ended",()=>{$("play").textContent="▶ 自分の声";drawWave()});
+  audio.addEventListener("loadedmetadata",()=>{if(!dur&&isFinite(audio.duration))dur=audio.duration;drawWave()});
+  $("play").onclick=()=>{if(audio.paused){if(loopA!=null&&(audio.currentTime<loopA||audio.currentTime>=loopB))audio.currentTime=loopA;audio.play().catch(()=>{})}else audio.pause()};
+  $("replay").onclick=()=>{audio.currentTime=0;audio.play().catch(()=>{})};
+  $("back2").onclick=()=>{audio.currentTime=Math.max(0,audio.currentTime-2);drawWave()};
+  $("rate").onclick=()=>{prate=prate===1?0.75:prate===0.75?0.5:1;audio.playbackRate=prate;$("rate").textContent="速さ "+prate};
+  $("clearloop").onclick=()=>{loopA=loopB=null;$("clearloop").hidden=true;drawWave()};
+  (function(){const c=$("wave");let down=null;
+    const tAt=x=>{const r=c.getBoundingClientRect();const d=dur||audio.duration||0;return Math.min(d,Math.max(0,(x-r.left)/r.width*d))};
+    c.addEventListener("pointerdown",e=>{down={x:e.clientX,t:tAt(e.clientX)};c.setPointerCapture(e.pointerId)});
+    c.addEventListener("pointermove",e=>{if(!down)return;if(Math.abs(e.clientX-down.x)>8){const t=tAt(e.clientX);loopA=Math.min(down.t,t);loopB=Math.max(down.t,t);drawWave()}});
+    c.addEventListener("pointerup",e=>{if(!down)return;
+      if(Math.abs(e.clientX-down.x)<=8){audio.currentTime=down.t;if(loopA!=null&&(down.t<loopA||down.t>loopB)){loopA=loopB=null;$("clearloop").hidden=true}}
+      else{$("clearloop").hidden=false;audio.currentTime=loopA}
+      down=null;audio.play().catch(()=>{});drawWave()});
+    window.addEventListener("resize",()=>drawWave());
+  })();
+
+  // ---------- 添削 ----------
+  async function check(){
+    const it=items[idx];const said=$("said").value.trim();
+    if(!said){$("said").focus();return}
+    if(rec&&rec.state==="recording")return;
+    cancelAnimationFrame(raf);elapsed=Math.max(elapsed,(spokeAt==null?(performance.now()-t0)/1000:elapsed));
+    $("check").disabled=true;$("q").hidden=true;$("fbcard").hidden=false;
+    $("f-count").textContent=(idx+1)+" / 3　"+fmt(elapsed)+"秒";
+    $("f-tag").textContent=(it.review?"復習・":"")+MODE[sessionMode];
+    $("f-mine").textContent="あなた：「"+said+"」";
+    $("fb").innerHTML='<span class="note">添削しています…</span>';
+    $("modelbox").hidden=true;$("judgebox").hidden=true;$("replay").hidden=!aurl;
+    const hasAudio=!!blobWav;
+    const parts=[{text:`英検準1級の二次面接を目指す学習者の瞬間英作文を添削してください。
+和文：${it.ja}
+型：${it.label}
+模範文：${it.en}
+学習者が言った英文（録音を書き起こし、本人が聞き取りを確認したもの）：${said}
+ルール：
+- 模範文と同じである必要はない。意味が通り文法的に正しければ正解扱い。
+- good：合っているところを先に、具体的に日本語で1〜2文（型が自力で出せている、時制を保てている など）。
+- errors：気づいた誤りは全部（文法・語法・語順・時制・冠詞・前置詞・不自然さ）。1つに絞らない。why は日本語で短く。
+- corrected：学習者の文をできるだけ生かした最小修正版。
+- next：次回の一手を日本語40字以内で1つ。
+${hasAudio?"- pron：添付の録音を聞いて、面接官に伝わりにくい発音があれば最大3つ（語と日本語の短いコツ）。はっきり問題がなければ空配列。細かい訛りは挙げない。":"- pron：空配列。"}
+出力はJSONだけ：{"ok":true,"good":"…","corrected":"…","errors":[{"wrong":"…","right":"…","why":"…"}],"next":"…","pron":[{"word":"…","tip":"…"}]}`}];
+    if(hasAudio)parts.push({inline_data:{mime_type:blobMime,data:await b64(blobWav)}});
+    let r=null,em="";
+    try{r=await gen(parts,{temp:0.2})}catch(e){r=null;em=errMsg(e)}
+    const errs=r&&Array.isArray(r.errors)?r.errors:[];const pron=r&&Array.isArray(r.pron)?r.pron:[];
+    $("fb").innerHTML=r?(
+      (r.good?'<div class="good"><b>できているところ</b><br>'+esc(r.good)+'</div>':'')+
+      (errs.length?'<div><span class="step">誤り（全部）</span><ol>'+errs.map(x=>'<li><span class="w">'+esc(x.wrong)+'</span> → <span class="r">'+esc(x.right)+'</span><br><span class="note">'+esc(x.why)+'</span></li>').join("")+'</ol></div>':'<div class="ok">誤りなし</div>')+
+      (r.corrected&&errs.length?'<div><span class="step">あなたの文を直すと</span><div class="corr">'+esc(r.corrected)+'</div></div>':'')+
+      (pron.length?'<div><span class="step">発音</span><ol>'+pron.map(p=>'<li><span class="r">'+esc(p.word)+'</span>　<span class="note">'+esc(p.tip)+'</span></li>').join("")+'</ol></div>':'')+
+      (r.next?'<p class="note">次の一手：'+esc(r.next)+'</p>':'')
+    ):'<span class="note">添削できませんでした。'+em+' 模範文と比べて自己判定してください。</span>';
+    $("f-model").textContent=it.en;$("f-alt").textContent=it.alt.length?"別解："+it.alt.join(" ／ "):"";$("f-point").innerHTML=safeB(it.point);
+    $("modelbox").hidden=false;$("judgebox").hidden=false;
+    items[idx].result={said,sec:Math.round(elapsed*10)/10,startSec:spokeAt==null?null:Math.round(spokeAt*10)/10,voice:hasAudio,ok:!!(r&&r.ok),good:r?.good||"",corrected:r?.corrected||"",errors:errs,pron,next:r?.next||""};
+  }
+  function judge(j){items[idx].result=items[idx].result||{};items[idx].result.judge=j;try{audio.pause()}catch(e){}idx++;if(idx<3)showQ();else finish()}
+
+  // ---------- 終了・保存 ----------
+  async function finish(){
+    cancelAnimationFrame(raf);$("q").hidden=true;$("fbcard").hidden=true;$("done").hidden=false;
+    const J={good:"◎",mid:"○",bad:"×"};
+    $("sum").innerHTML=items.map((it,i)=>'<div class="it"><b>'+(i+1)+'. '+esc(it.ja)+'</b><span class="mine">'+esc(it.result?.said||"")+'</span><span class="note">'+(J[it.result?.judge]||"")+"　誤り "+(it.result?.errors?.length||0)+"件　"+fmt(it.result?.sec||0)+"秒</span></div>").join("");
+    const newReview=[];
+    items.forEach(it=>{const r=it.result||{};if(r.judge==="bad"||(r.errors&&r.errors.length&&r.judge!=="good"))newReview.push({ja:it.ja,en:it.en,point:it.point})});
+    const kept=(state.review||[]).slice(items.some(x=>x.review)?1:0);
+    state.review=newReview.concat(kept).slice(0,10);
+    if(sessionMode==="narration")state.nextKoma=(state.nextKoma||1)+1;else state.qaTopics=(state.qaTopics||[]).concat([sessionMeta.topic]).slice(-12);
+    state.nextMode=sessionMode==="narration"?"qa":"narration";state.updatedAt=Date.now();
+    const session={id:uid(),date:today(),at:Date.now(),mode:sessionMode,...sessionMeta,target:sessionMeta.topic||(sessionMeta.card+" コマ"+sessionMeta.koma),
+      items:items.map(it=>({ja:it.ja,label:it.label,en:it.en,alt:it.alt,point:it.point,review:it.review,...(it.result||{})}))};
+    recent.unshift(session);renderHist();
+    $("savenote").textContent="保存しています…";
+    try{const sent=await store.save(state,session);$("savenote").textContent=sent?"保存しました。今夜、右腕AIに書き写されます。":"このスマホに保存しました（記録の送り先が未設定なので右腕AIには届きません）。"}
+    catch(e){$("savenote").textContent="送れませんでした。電波を確かめて「最初の画面へ」→ もう一度。";pending=session}
+    renderHome();
+  }
+  let pending=null;
+  async function retryPending(){if(!pending)return;try{await store.save(state,pending);pending=null}catch(e){}}
+
+  $("speak").onclick=()=>{try{const u=new SpeechSynthesisUtterance(items[idx]?.en||"");u.lang="en-US";u.rate=0.95;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}};
+  $("start").onclick=start;$("more").onclick=start;
+  $("home-btn").onclick=async()=>{$("done").hidden=true;$("home").hidden=false;await retryPending();renderHome()};
+  $("check").onclick=check;
+  document.querySelectorAll(".judge button").forEach(b=>b.onclick=()=>judge(b.dataset.j));
+  boot();
+})();
+</script>
+</body>
+</html>
